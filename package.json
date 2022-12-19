@@ -1,0 +1,23 @@
+{
+  "name": "test-actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamieDanielson/test-actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamieDanielson/test-actions/issues"
+  },
+  "homepage": "https://github.com/JamieDanielson/test-actions#readme",
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  }
+}
