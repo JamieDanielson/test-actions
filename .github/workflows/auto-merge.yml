@@ -22,3 +22,12 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  jamie:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'JamieDanielson' }}
+    steps:
+      - name: Enable auto-merge for JamieDanielson
+        run: gh pr review --approve "$PR_URL" && gh pr merge --auto --merge "$PR_URL" # does this allow without approval?
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
