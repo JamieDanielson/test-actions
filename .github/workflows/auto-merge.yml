@@ -27,7 +27,8 @@ jobs:
     if: ${{ github.actor == 'JamieDanielson' }}
     steps:
       - name: Enable auto-merge for JamieDanielson
-        run: gh pr review --approve "$PR_URL" && gh pr merge --auto --merge "$PR_URL" # does this allow without approval?
+        # run: gh pr review --approve "$PR_URL" && gh pr merge --auto --merge "$PR_URL" # this approval suffices for auto-merge
+        run: gh pr merge --auto --merge "$PR_URL" # one more check - does this allow without codeowner approval?
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
