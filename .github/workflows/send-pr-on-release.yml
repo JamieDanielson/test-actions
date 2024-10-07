@@ -19,6 +19,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send pull-request
-        run: ./scripts/send-pr.sh
+        run: |
+          chmod +x ./scripts/send-pr.sh
+          ./scripts/send-pr.sh
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
