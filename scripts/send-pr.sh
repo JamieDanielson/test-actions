@@ -35,6 +35,7 @@ git config user.name "Jamie Danielson"
 $GIT checkout -b $BRANCH_NAME
 
 # Update the script files to the latest version.
+echo $pwd
 cp -R ../../../docs/heygirl.md docs/heygirl.md
 
 # Commit the changes and push the feature branch to origin
