@@ -23,7 +23,7 @@ BRANCH_NAME="update-docs-to-$LATEST_TAG"
 
 # Clone the remote repository and change working directory to the
 # folder it was cloned to.
-git clone --depth=1 --branch=main https://JamieDanielson:$GH_PAT@github.com:$REPOSITORY.git $FOLDER
+git clone --depth=1 --branch=main https://JamieDanielson:$GH_PAT@github.com/$REPOSITORY.git $FOLDER
 
 cd $FOLDER
 
