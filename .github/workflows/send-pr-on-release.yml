@@ -1,0 +1,24 @@
+name: send-pr-with-latest
+on:
+  # push:
+    # branches:
+      # - main
+  workflow_dispatch:
+
+jobs:
+  send-pull-requests:
+    runs-on: ubuntu-20.04
+    if: github.repository == 'JamieDanielson/test-actions'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Checkout everything to get access to the tags
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send pull-request
+        run: ./scripts/send-pr.sh
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
