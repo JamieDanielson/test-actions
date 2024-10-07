@@ -1,34 +1,34 @@
-name: Dependabot auto-merge dev dependencies
-on: pull_request
+# name: Dependabot auto-merge dev dependencies
+# on: pull_request
 
-permissions:
-  contents: write
-  pull-requests: write
+# permissions:
+#   contents: write
+#   pull-requests: write
 
-jobs:
-  dependabot:
-    runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1.3.5
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Enable auto-merge for Dependabot PRs for Dev Dependencies
-        if: ${{contains(steps.metadata.outputs.dependency-type, 'direct:development') && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
-        run: gh pr merge --auto --merge "$PR_URL"
-        # run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-  jamie:
-    runs-on: ubuntu-latest
-    if: ${{ github.actor == 'JamieDanielson' }}
-    steps:
-      - name: Enable auto-merge for JamieDanielson
-        run: gh pr review --approve "$PR_URL" && gh pr merge --auto --merge "$PR_URL" # this approval suffices for codeowner
-        # run: gh pr merge --auto --merge "$PR_URL" # this merge won't happen without approval
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+# jobs:
+#   dependabot:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.actor == 'dependabot[bot]' }}
+#     steps:
+#       - name: Dependabot metadata
+#         id: metadata
+#         uses: dependabot/fetch-metadata@v1.3.5
+#         with:
+#           github-token: "${{ secrets.GITHUB_TOKEN }}"
+#       - name: Enable auto-merge for Dependabot PRs for Dev Dependencies
+#         if: ${{contains(steps.metadata.outputs.dependency-type, 'direct:development') && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
+#         run: gh pr merge --auto --merge "$PR_URL"
+#         # run: gh pr review --approve "$PR_URL"
+#         env:
+#           PR_URL: ${{github.event.pull_request.html_url}}
+#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#   jamie:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.actor == 'JamieDanielson' }}
+#     steps:
+#       - name: Enable auto-merge for JamieDanielson
+#         # run: gh pr review --approve "$PR_URL" && gh pr merge --auto --merge "$PR_URL" # this approval suffices for codeowner
+#         # run: gh pr merge --auto --merge "$PR_URL" # this merge won't happen without approval
+#         env:
+#           PR_URL: ${{github.event.pull_request.html_url}}
+#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
